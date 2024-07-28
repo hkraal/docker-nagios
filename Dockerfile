@@ -24,13 +24,21 @@ RUN make install install-init install-commandmode install-cgis install-config
 # Actual container.
 FROM debian:12
 
+ENV NAGIOS_USER=nagiosadmin NAGIOS_PASSWORD=nagiosadmin
+
 RUN apt-get update && \
-    apt-get install -y vim apache2 php8.2 
+    apt-get install -y vim apache2 php8.2 && \
+    useradd --system nagios
 
 COPY --from=0 /usr/src/nagios-*/sample-config/httpd.conf /etc/apache2/conf-available/nagios.conf
 
-RUN useradd --system nagios && \
-    a2enconf nagios
-
-
 COPY --from=0 --chown=nagios:nagios /usr/local/nagios /usr/local/nagios
+
+RUN a2enconf nagios && \
+    a2enmod rewrite && \
+    a2enmod cgi && \
+    htpasswd -bc /usr/local/nagios/etc/htpasswd.users $NAGIOS_USER $NAGIOS_PASSWORD
+
+COPY bin/entrypoint.sh /
+
+CMD /entrypoint.sh

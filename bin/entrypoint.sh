@@ -4,7 +4,7 @@ set -e
 
 apachectl start
 
-mkdir -p /usr/local/nagios/var/rw /usr/local/nagios/var/spool
+mkdir -p /usr/local/nagios/var/rw /usr/local/nagios/var/spool/checkresults
 
 chgrp www-data /usr/local/nagios/var/rw
 

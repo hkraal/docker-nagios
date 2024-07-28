@@ -1,7 +1,7 @@
 # Build nagios.
 FROM debian:12
 
-ENV NAGIOS_VERSION=4.4.14
+ENV NAGIOS_VERSION=4.5.3
 
 RUN apt-get update && \
     apt-get install -y wget build-essential openssl libssl-dev unzip
@@ -21,9 +21,16 @@ RUN useradd --system nagios
 
 RUN make install install-init install-commandmode install-cgis install-config
 
-# # Actual container.
-# FROM httpd:2.4-bookworm
+# Actual container.
+FROM debian:12
 
-# RUN useradd --system nagios
+RUN apt-get update && \
+    apt-get install -y vim apache2 php8.2 
 
-# COPY --from=0 /usr/local/nagios /usr/local/nagios 
+COPY --from=0 /usr/src/nagios-*/sample-config/httpd.conf /etc/apache2/conf-available/nagios.conf
+
+RUN useradd --system nagios && \
+    a2enconf nagios
+
+
+COPY --from=0 --chown=nagios:nagios /usr/local/nagios /usr/local/nagios

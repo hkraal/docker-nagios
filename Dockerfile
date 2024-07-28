@@ -1,4 +1,4 @@
-# Build nagios.
+# Setup build container.
 FROM debian:12
 
 ENV NAGIOS_VERSION=4.5.3 \
@@ -7,12 +7,12 @@ ENV NAGIOS_VERSION=4.5.3 \
     NAGIOS_NRDP_VERSION=2.0.5
 
 RUN apt-get update && \
-    apt-get install -y wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps
+    apt-get install -y wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps fping
 
 
-# Build nagios.
 WORKDIR /usr/src
 
+# Build nagios.
 RUN wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-${NAGIOS_VERSION}/nagios-${NAGIOS_VERSION}.tar.gz && \
     tar zxf nagios-${NAGIOS_VERSION}.tar.gz && \
     cd nagios-${NAGIOS_VERSION} && \
@@ -22,8 +22,6 @@ RUN wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagio
     make install install-init install-commandmode install-cgis install-config
 
 # Build plugins.
-WORKDIR /usr/src
-
 RUN wget https://nagios-plugins.org/download/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     tar zxf nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     cd nagios-plugins-${NAGIOS_PLUGINS_VERSION} && \
@@ -49,7 +47,7 @@ RUN a2enconf nagios && \
     a2enmod rewrite && \
     a2enmod cgi && \
     htpasswd -bc /usr/local/nagios/etc/htpasswd.users $NAGIOS_USER $NAGIOS_PASSWORD && \
-    chgrp www-data /usr/local/nagios/var/rw/nagios.cmd
+    chgrp www-data /usr/local/nagios/var/rw
 
 COPY bin/entrypoint.sh /
 

@@ -34,22 +34,21 @@ FROM debian:12
 ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin
 
-COPY --from=0 /usr/src/nagios-*/sample-config/httpd.conf /etc/apache2/conf-available/nagios.conf
-
-COPY --from=0 --chown=nagios:nagios /usr/local/nagios /usr/local/nagios
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends vim apache2 php8.2 && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /usr/share/doc/ && \
-    useradd --system nagios && \
-    a2enconf nagios && \
-    a2enmod rewrite && \
-    a2enmod cgi && \
-    htpasswd -bc /usr/local/nagios/etc/htpasswd.users $NAGIOS_USER $NAGIOS_PASSWORD && \
-    chgrp www-data /usr/local/nagios/var/rw
+    useradd --system nagios
 
-VOLUME ["/usr/local/nagios/var", "/usr/local/nagios/etc"]
+COPY --from=0 /usr/src/nagios-*/sample-config/httpd.conf /etc/apache2/conf-available/nagios.conf
+
+COPY --from=0 --chown=nagios:nagios /usr/local/nagios /usr/local/nagios
+
+RUN a2enconf nagios && \
+    a2enmod rewrite && \
+    a2enmod cgi
+
+VOLUME ["/usr/local/nagios/var"]
 
 COPY bin/entrypoint.sh /
 

@@ -4,8 +4,8 @@ set -e
 
 apachectl start
 
-mkdir -p /usr/local/nagios/var/rw /usr/local/nagios/var/spool/checkresults
-
 chgrp www-data /usr/local/nagios/var/rw
+
+htpasswd -bc /usr/local/nagios/etc/htpasswd.users $NAGIOS_USER $NAGIOS_PASSWORD
 
 /usr/local/nagios/bin/nagios /usr/local/nagios/etc/nagios.cfg

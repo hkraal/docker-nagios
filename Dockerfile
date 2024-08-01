@@ -7,7 +7,7 @@ ENV NAGIOS_VERSION=4.5.3 \
     NAGIOS_NRDP_VERSION=2.0.5
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps fping iputils-ping
+    apt-get install -y --no-install-recommends ca-certificates wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps fping iputils-ping dnsutils
 
 WORKDIR /usr/src
 
@@ -48,7 +48,7 @@ ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping && \
+    apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping dnsutils && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /usr/share/doc/ && \
     useradd --system nagios

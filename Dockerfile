@@ -48,7 +48,7 @@ ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping dnsutils && \
+    apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping dnsutils python3 python3-pip python3-requests && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /usr/share/doc/ && \
     useradd --system nagios
@@ -62,6 +62,8 @@ RUN a2enconf nagios && \
     a2enmod cgi
 
 VOLUME ["/usr/local/nagios/var", "/usr/local/nagios/etc"]
+
+COPY plugins/* /usr/local/nagios/libexec/
 
 COPY bin/entrypoint.sh /
 

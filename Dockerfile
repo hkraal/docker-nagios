@@ -48,7 +48,7 @@ ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping dnsutils python3 python3-pip python3-requests && \
+    apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping dnsutils python3 python3-pip python3-requests mailutils curl && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /usr/share/doc/ && \
     useradd --system nagios

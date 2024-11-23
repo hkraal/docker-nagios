@@ -1,0 +1,15 @@
+services:
+  web:
+    container_name: nagios
+    image: ghcr.io/hkraal/nagios
+    restart: unless-stopped
+    volumes:
+      - var:/usr/local/nagios/var
+      - etc:/usr/local/nagios/etc
+    ports:
+      - 8000:80
+    environment:
+      - TZ=Europe/Amsterdam
+volumes:
+  var:
+  etc:

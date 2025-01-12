@@ -9,6 +9,17 @@
     "lockFileMaintenance": {
         "enabled": true
     },
+    "packageRules": [
+        {
+            "matchManagers": [
+                "regex"
+            ],
+            "matchPackageNames": [
+                "NagiosEnterprises/nagioscore"
+            ],
+            "extractVersion": "^nagios-(?<version>.*)$"
+        }
+    ],
     "customManagers": [
         {
             "customType": "regex",

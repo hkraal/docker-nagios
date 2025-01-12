@@ -3,9 +3,10 @@ FROM debian:12@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c9
 
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nagioscore
 ENV NAGIOS_VERSION=4.5.9
+# renovate: datasource=github-tags packageName=nagios-plugins/nagios-plugins
 ENV NAGIOS_PLUGINS_VERSION=2.4.10
+# renovate: datasource=github-tags packageName=NagiosEnterprises/nrpe
 ENV NAGIOS_NRPE_VERSION=4.1.0
-ENV NAGIOS_NRDP_VERSION=2.0.5
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps fping iputils-ping dnsutils

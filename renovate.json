@@ -18,6 +18,24 @@
                 "NagiosEnterprises/nagioscore"
             ],
             "extractVersion": "^nagios-(?<version>.*)$"
+        },
+        {
+            "matchManagers": [
+                "custom.regex"
+            ],
+            "matchPackageNames": [
+                "nagios-plugins/nagios-plugins"
+            ],
+            "extractVersion": "^release-(?<version>.*)$"
+        },
+        {
+            "matchManagers": [
+                "custom.regex"
+            ],
+            "matchPackageNames": [
+                "NagiosEnterprises/nrpe"
+            ],
+            "extractVersion": "^nrpe-(?<version>.*)$"
         }
     ],
     "customManagers": [

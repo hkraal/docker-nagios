@@ -12,7 +12,7 @@
     "packageRules": [
         {
             "matchManagers": [
-                "regex"
+                "custom.regex"
             ],
             "matchPackageNames": [
                 "NagiosEnterprises/nagioscore"

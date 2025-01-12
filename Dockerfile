@@ -1,5 +1,5 @@
 # Setup build container.
-FROM debian:12
+FROM debian:12@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c92ac20a
 
 ENV NAGIOS_VERSION=4.5.6 \
     NAGIOS_PLUGINS_VERSION=2.4.10 \
@@ -42,7 +42,7 @@ RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make install-daemon
 RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make install-plugin
 
 # Actual container.
-FROM debian:12
+FROM debian:12@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c92ac20a
 
 ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin

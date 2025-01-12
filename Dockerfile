@@ -6,7 +6,7 @@ ENV NAGIOS_VERSION=4.5.9
 # renovate: datasource=github-tags packageName=nagios-plugins/nagios-plugins
 ENV NAGIOS_PLUGINS_VERSION=2.4.10
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nrpe
-ENV NAGIOS_NRPE_VERSION=4.1.0
+ENV NAGIOS_NRPE_VERSION=4.1.3
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps fping iputils-ping dnsutils

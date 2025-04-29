@@ -1,5 +1,5 @@
 # Setup build container.
-FROM debian:12@sha256:18023f131f52fc3ea21973cabffe0b216c60b417fd2478e94d9d59981ebba6af
+FROM debian:12@sha256:264982ff4d18000fa74540837e2c43ca5137a53a83f8f62c7b3803c0f0bdcd56
 
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nagioscore
 ENV NAGIOS_VERSION=4.5.9
@@ -44,7 +44,7 @@ RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make install-daemon
 RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make install-plugin
 
 # Actual container.
-FROM debian:12@sha256:18023f131f52fc3ea21973cabffe0b216c60b417fd2478e94d9d59981ebba6af
+FROM debian:12@sha256:264982ff4d18000fa74540837e2c43ca5137a53a83f8f62c7b3803c0f0bdcd56
 
 ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin

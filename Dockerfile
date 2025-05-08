@@ -17,7 +17,7 @@ WORKDIR /usr/src
 RUN wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-${NAGIOS_VERSION}/nagios-${NAGIOS_VERSION}.tar.gz && \
     tar zxf nagios-${NAGIOS_VERSION}.tar.gz && \
     cd nagios-${NAGIOS_VERSION} && \
-    ./configure && \
+    ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/*-linux-gnu/ && \
     make all && \
     useradd --system nagios && \
     make install install-init install-commandmode install-cgis install-config
@@ -26,22 +26,18 @@ RUN wget https://github.com/NagiosEnterprises/nagioscore/releases/download/nagio
 RUN wget https://nagios-plugins.org/download/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     tar zxf nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     cd nagios-plugins-${NAGIOS_PLUGINS_VERSION} && \
-    ./configure && \
+    ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/*-linux-gnu/ && \
     make && \
     make install
 
 # Build nrpe.
 RUN wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-${NAGIOS_NRPE_VERSION}/nrpe-${NAGIOS_NRPE_VERSION}.tar.gz && \
     tar zxf nrpe-${NAGIOS_NRPE_VERSION}.tar.gz && \
-    cd nrpe-${NAGIOS_NRPE_VERSION}
-
-RUN cd nrpe-${NAGIOS_NRPE_VERSION} && ./configure
-
-RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make nrpe
-
-RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make install-daemon
-
-RUN cd nrpe-${NAGIOS_NRPE_VERSION} && make install-plugin
+    cd nrpe-${NAGIOS_NRPE_VERSION} && \
+    ./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/*-linux-gnu/ && \
+    make nrpe && \
+    make install-daemon && \
+    make install-plugin
 
 # Actual container.
 FROM debian:12@sha256:264982ff4d18000fa74540837e2c43ca5137a53a83f8f62c7b3803c0f0bdcd56

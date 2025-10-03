@@ -1,7 +1,7 @@
 services:
   web:
     container_name: nagios
-    image: ghcr.io/hkraal/docker-nagios@sha256:33408e229e52e9271db0cb8041f009a4f66831042ec6325ddacf8e08ff5fe75b
+    image: ghcr.io/hkraal/docker-nagios@sha256:67be3b426394b1e28114bb94ce37e2195cf5b07f34c2f157c2b0b0e4c029fea0
     restart: unless-stopped
     volumes:
       - var:/usr/local/nagios/var

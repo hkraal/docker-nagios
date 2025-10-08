@@ -1,8 +1,10 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:best-practices"
-    ],
+        "config:best-practices",
+        ":separateMultipleMajorReleases",
+        ":semanticCommits"
+        ],
     "timezone": "Europe/Amsterdam",
     "dependencyDashboard": true,
     "rebaseWhen": "behind-base-branch",
@@ -36,6 +38,24 @@
                 "NagiosEnterprises/nrpe"
             ],
             "extractVersion": "^nrpe-(?<version>.*)$"
+        },
+        {
+            "matchUpdateTypes": [
+                "digest",
+                "pinDigest"
+            ],
+            "matchPackageNames": [
+                "ghcr.io/hkraal/docker-nagios"
+            ],
+            "enabled": false
+        },
+        {
+            "groupName": "major upgrades",
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "dependencyDashboardApproval": true,
+            "automerge": false
         }
     ],
     "customManagers": [

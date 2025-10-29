@@ -2,7 +2,7 @@
 FROM debian:12@sha256:26f2a7cab45014541c65f9d140ccfa6aaefbb49686c6759bea9c6f7f5bb3d72f
 
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nagioscore
-ENV NAGIOS_VERSION=4.5.9
+ENV NAGIOS_VERSION=4.5.10
 # renovate: datasource=github-tags packageName=nagios-plugins/nagios-plugins
 ENV NAGIOS_PLUGINS_VERSION=2.4.12
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nrpe

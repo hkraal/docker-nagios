@@ -9,6 +9,7 @@ ENV NAGIOS_PLUGINS_VERSION=2.4.12
 ENV NAGIOS_NRPE_VERSION=4.1.3
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends ca-certificates wget build-essential openssl libssl-dev unzip autoconf gcc libc6 libmcrypt-dev make bc gawk dc snmp libnet-snmp-perl gettext procps fping iputils-ping dnsutils
 
 WORKDIR /usr/src
@@ -47,6 +48,7 @@ ENV NAGIOS_USER=nagiosadmin \
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends vim apache2 php8.2 iputils-ping dnsutils python3 python3-pip python3-requests mailutils curl && \
+    apt-get upgrade -y && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /usr/share/doc/ && \
     useradd --system nagios

@@ -1,5 +1,5 @@
 # Setup build container.
-FROM debian:12@sha256:34e7f0ae7c10a61bfbef6e1b2ed205d9b47bb12e90c50696f729a5c7a01cf1f2
+FROM debian:12@sha256:0a5bf4ecacfc050bad0131c8e1401063fd1e8343a418723f6dbd3cd13a7b9e33
 
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nagioscore
 ENV NAGIOS_VERSION=4.5.11
@@ -41,7 +41,7 @@ RUN wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-${NAGI
     make install-plugin
 
 # Actual container.
-FROM debian:12@sha256:34e7f0ae7c10a61bfbef6e1b2ed205d9b47bb12e90c50696f729a5c7a01cf1f2
+FROM debian:12@sha256:0a5bf4ecacfc050bad0131c8e1401063fd1e8343a418723f6dbd3cd13a7b9e33
 
 ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin

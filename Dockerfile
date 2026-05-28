@@ -2,7 +2,7 @@
 FROM debian:bookworm-20260518@sha256:ed4fcc40bb1162b6d2d32e7bec15044d13963779abbe63f67f1cd62b06220519
 
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nagioscore
-ENV NAGIOS_VERSION=4.5.12
+ENV NAGIOS_VERSION=4.5.13
 # renovate: datasource=github-tags packageName=nagios-plugins/nagios-plugins
 ENV NAGIOS_PLUGINS_VERSION=2.5
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nrpe

@@ -1,5 +1,5 @@
 # Setup build container.
-FROM debian:bookworm-20260803@sha256:813017f3d62be4b5891a7acca6a01bdcd4b8513daa81b1ab99d3a50385b26931
+FROM debian:bookworm-20260824@sha256:6ebd97fa83deb272194a2cf015b3d26a4d538e9ad3a7a79d544c8af5b0a01443
 
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nagioscore
 ENV NAGIOS_VERSION=4.5.14
@@ -41,7 +41,7 @@ RUN wget https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-${NAGI
     make install-plugin
 
 # Actual container.
-FROM debian:bookworm-20260803@sha256:813017f3d62be4b5891a7acca6a01bdcd4b8513daa81b1ab99d3a50385b26931
+FROM debian:bookworm-20260824@sha256:6ebd97fa83deb272194a2cf015b3d26a4d538e9ad3a7a79d544c8af5b0a01443
 
 ENV NAGIOS_USER=nagiosadmin \
     NAGIOS_PASSWORD=nagiosadmin

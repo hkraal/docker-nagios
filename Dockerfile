@@ -6,7 +6,7 @@ ENV NAGIOS_VERSION=4.5.14
 # renovate: datasource=github-tags packageName=nagios-plugins/nagios-plugins
 ENV NAGIOS_PLUGINS_VERSION=2.5
 # renovate: datasource=github-tags packageName=NagiosEnterprises/nrpe
-ENV NAGIOS_NRPE_VERSION=4.1.3
+ENV NAGIOS_NRPE_VERSION=4.2.0
 
 RUN apt-get update && \
     apt-get upgrade -y && \
